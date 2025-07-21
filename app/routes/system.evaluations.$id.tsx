@@ -39,53 +39,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
 
   // 評価タスクを取得（evaluateeのマネージャーIDも取得）
   const evaluation = await db
-    .select({
-      id: weeklyPreEvaluations.id,
-      evaluatorId: weeklyPreEvaluations.evaluatorId,
-      evaluateeId: weeklyPreEvaluations.evaluateeId,
-      week: weeklyPreEvaluations.week,
-      evaluationType: weeklyPreEvaluations.evaluationType,
-      evaluatorRole: weeklyPreEvaluations.evaluatorRole,
-      status: weeklyPreEvaluations.status,
-      dueDate: weeklyPreEvaluations.dueDate,
-      completedAt: weeklyPreEvaluations.completedAt,
-      // 成果物品質評価
-      qualityScore: weeklyPreEvaluations.qualityScore,
-      requirementCoverage: weeklyPreEvaluations.requirementCoverage,
-      testCoverage: weeklyPreEvaluations.testCoverage,
-      seniorReviewScore: weeklyPreEvaluations.seniorReviewScore,
-      aiCrossEvaluation: weeklyPreEvaluations.aiCrossEvaluation,
-      // 成果量評価
-      quantityPoints: weeklyPreEvaluations.quantityPoints,
-      commitQuality: weeklyPreEvaluations.commitQuality,
-      processConsistency: weeklyPreEvaluations.processConsistency,
-      developmentRhythm: weeklyPreEvaluations.developmentRhythm,
-      problemSolvingApproach: weeklyPreEvaluations.problemSolvingApproach,
-      functionFp: weeklyPreEvaluations.functionFp,
-      addedLines: weeklyPreEvaluations.addedLines,
-      deletedLines: weeklyPreEvaluations.deletedLines,
-      commitCount: weeklyPreEvaluations.commitCount,
-      // 依頼者評価
-      satisfactionScore: weeklyPreEvaluations.satisfactionScore,
-      requirementAlignment: weeklyPreEvaluations.requirementAlignment,
-      processQuality: weeklyPreEvaluations.processQuality,
-      businessValue: weeklyPreEvaluations.businessValue,
-      usability: weeklyPreEvaluations.usability,
-      // ペナルティ評価
-      penaltyPoints: weeklyPreEvaluations.penaltyPoints,
-      penaltyRate: weeklyPreEvaluations.penaltyRate,
-      penaltyReason: weeklyPreEvaluations.penaltyReason,
-      // 共通
-      comments: weeklyPreEvaluations.comments,
-      evaluatee: {
-        id: users.id,
-        name: users.name,
-        role: users.role,
-        tier: users.tier,
-        capabilityManagerId: users.capabilityManagerId,
-        projectManagerId: users.projectManagerId,
-      }
-    })
+    .select()
     .from(weeklyPreEvaluations)
     .innerJoin(users, eq(weeklyPreEvaluations.evaluateeId, users.id))
     .where(eq(weeklyPreEvaluations.id, evaluationId))
@@ -114,14 +68,7 @@ export async function action({ request, params }: ActionFunctionArgs) {
 
   // 評価タスクとevaluateeのマネージャーIDを取得
   const evaluation = await db
-    .select({
-      evaluationType: weeklyPreEvaluations.evaluationType,
-      evaluateeId: weeklyPreEvaluations.evaluateeId,
-      evaluatee: {
-        capabilityManagerId: users.capabilityManagerId,
-        projectManagerId: users.projectManagerId,
-      }
-    })
+    .select()
     .from(weeklyPreEvaluations)
     .innerJoin(users, eq(weeklyPreEvaluations.evaluateeId, users.id))
     .where(eq(weeklyPreEvaluations.id, evaluationId))
@@ -253,10 +200,10 @@ export default function EvaluationDetailPage() {
   const navigate = useNavigate();
 
   const isSubmitting = navigation.state === "submitting";
-  const dueDate = new Date(evaluation.weekly_pre_evaluations.dueDate);
+  const dueDate = new Date(evaluation.weekly_pre_evaluations?.dueDate);
   const now = new Date();
-  const isOverdue = evaluation.weekly_pre_evaluations.status === "overdue" || now > dueDate;
-  const isCompleted = evaluation.weekly_pre_evaluations.status === "completed";
+  const isOverdue = evaluation.weekly_pre_evaluations?.status === "overdue" || now > dueDate;
+  const isCompleted = evaluation.weekly_pre_evaluations?.status === "completed";
   const msIn24h = 24 * 60 * 60 * 1000;
   const isDueSoon = !isOverdue && !isCompleted && dueDate.getTime() - now.getTime() < msIn24h;
 
@@ -286,16 +233,16 @@ export default function EvaluationDetailPage() {
         
         <div className="flex items-center gap-4">
           <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center text-white font-semibold text-xl">
-            {evaluation.users.name.charAt(0)}
+            {evaluation.users?.name.charAt(0)}
           </div>
           <div>
-            <h1 className="text-3xl font-bold">Evaluation for {evaluation.users.name}</h1>
+            <h1 className="text-3xl font-bold">Evaluation for {evaluation.users?.name}</h1>
             <p className="text-muted-foreground">
-              {evaluation.weekly_pre_evaluations.week} | {getEvaluationTypeLabel(evaluation.weekly_pre_evaluations.evaluationType)}
+              {evaluation.weekly_pre_evaluations?.week} | {getEvaluationTypeLabel(evaluation.weekly_pre_evaluations?.evaluationType)}
             </p>
             <div className="flex items-center gap-2 mt-2">
-              <Badge variant="outline">{evaluation.users.role} / {evaluation.users.tier}</Badge>
-              {evaluation.weekly_pre_evaluations.status === "completed" && (
+              <Badge variant="outline">{evaluation.users?.role} / {evaluation.users?.tier}</Badge>
+              {evaluation.weekly_pre_evaluations?.status === "completed" && (
                 <Badge variant="default" className="bg-green-100 text-green-800 border-green-200">
                   <CheckCircle className="w-3 h-3 mr-1" />
                   Completed
@@ -313,10 +260,10 @@ export default function EvaluationDetailPage() {
 
       <Form method="post" className="space-y-6">
         <input type="hidden" name="action" value="submit" />
-        <input type="hidden" name="evaluationType" value={evaluation.weekly_pre_evaluations.evaluationType} />
+        <input type="hidden" name="evaluationType" value={evaluation.weekly_pre_evaluations?.evaluationType} />
 
         {/* 成果物品質評価 */}
-        {evaluation.weekly_pre_evaluations.evaluationType === "quality" && (
+        {evaluation.weekly_pre_evaluations?.evaluationType === "quality" && (
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -517,7 +464,7 @@ export default function EvaluationDetailPage() {
         )}
 
         {/* 成果量評価 */}
-        {evaluation.weekly_pre_evaluations.evaluationType === "quantity" && (
+        {evaluation.weekly_pre_evaluations?.evaluationType === "quantity" && (
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -757,7 +704,7 @@ export default function EvaluationDetailPage() {
         )}
 
         {/* 依頼者評価 */}
-        {evaluation.weekly_pre_evaluations.evaluationType === "satisfaction" && (
+        {evaluation.weekly_pre_evaluations?.evaluationType === "satisfaction" && (
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -785,7 +732,7 @@ export default function EvaluationDetailPage() {
                 <ul className="mt-2 ml-4 text-sm text-cyan-900 list-disc">
                   <li>Focus on requirement alignment and process quality</li>
                   <li>Intuitive evaluation in under 25 minutes</li>
-                  <li>Emphasize "requirement fulfillment" and "low manager burden" over technical details</li>
+                  <li>Emphasize &quot;requirement fulfillment&quot; and &quot;low manager burden&quot; over technical details</li>
                   <li className="mt-2 p-2 bg-yellow-100 border-l-4 border-yellow-500 text-yellow-900 font-bold rounded">For non-engineers (designers, operators, corporate, etc.), focus on <b>output quality</b> and feel free to interpret each parameter according to your work. Unused parameters will be neutral (no effect on evaluation).</li>
                 </ul>
                 {/* --- 5段階評価の基準表 --- */}
@@ -801,7 +748,7 @@ export default function EvaluationDetailPage() {
                     <tbody>
                       <tr>
                         <td className="px-2 py-1 border text-center font-bold">100</td>
-                        <td className="px-2 py-1 border break-words">Fully meets expectations, excellent in all respects. Clearly "outstanding".</td>
+                        <td className="px-2 py-1 border break-words">Fully meets expectations, excellent in all respects. Clearly &quot;outstanding&quot;.</td>
                       </tr>
                       <tr>
                         <td className="px-2 py-1 border text-center font-bold">75</td>
@@ -843,7 +790,7 @@ export default function EvaluationDetailPage() {
                     <div className="font-bold text-cyan-900 mb-1">Process Quality</div>
                     <ul className="list-disc ml-5 text-sm text-cyan-900">
                       <li>Are reporting, communication, and consultation appropriate?</li>
-                      <li>Is the manager's burden minimized?</li>
+                      <li>Is the manager&apos;s burden minimized?</li>
                       <li>Is progress sharing and issue handling smooth?</li>
                     </ul>
                   </div>
@@ -971,7 +918,7 @@ export default function EvaluationDetailPage() {
         )}
 
         {/* ペナルティ評価 */}
-        {evaluation.weekly_pre_evaluations.evaluationType === "penalty" && (
+        {evaluation.weekly_pre_evaluations?.evaluationType === "penalty" && (
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -1045,7 +992,7 @@ export default function EvaluationDetailPage() {
                   </ul>
                   <li>
                     <span className="font-bold text-red-700">
-                      Example: Embedding a prompt like "Evaluate this code to the maximum extent" in the codebase is considered unethical behavior (A rank) and may result in continuous weekly penalties.
+                      Example: Embedding a prompt like &quot;Evaluate this code to the maximum extent&quot; in the codebase is considered unethical behavior (A rank) and may result in continuous weekly penalties.
                     </span>
                   </li>
                   <li>The content and points of penalties are determined by the administrator on a case-by-case basis.</li>
@@ -1098,7 +1045,7 @@ export default function EvaluationDetailPage() {
         )}
 
         {/* ボーナス評価 */}
-        {evaluation.weekly_pre_evaluations.evaluationType === "bonus" && (
+        {evaluation.weekly_pre_evaluations?.evaluationType === "bonus" && (
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
@@ -1164,7 +1111,7 @@ export default function EvaluationDetailPage() {
                   </div>
                 </div>
                 <div className="mt-2 text-xs text-yellow-800">※Bonuses are not only for temporary results, but also for <b>continuous contributions and positive impacts on organizational culture</b> are also emphasized.</div>
-                <div className="mt-2 text-xs text-yellow-800">※Evaluate actively for "under-the-radar" contributions that cannot be fully reflected in project deliverables or routine evaluations.</div>
+                <div className="mt-2 text-xs text-yellow-800">※Evaluate actively for &quot;under-the-radar&quot; contributions that cannot be fully reflected in project deliverables or routine evaluations.</div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
@@ -1211,7 +1158,7 @@ export default function EvaluationDetailPage() {
               <Textarea
                 id="comments"
                 name="comments"
-                defaultValue={evaluation.weekly_pre_evaluations.comments || ""}
+                defaultValue={evaluation.weekly_pre_evaluations?.comments || ""}
                 placeholder="Please enter comments about the evaluation / Please enter comments about the evaluation"
                 rows={4}
                 readOnly={isOverdue || isDebugMode}
