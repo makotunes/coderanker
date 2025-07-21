@@ -61,7 +61,7 @@ export default function Index() {
               </Link>
             </Button>
             <Button size="lg" variant="outline" className="text-lg px-8 py-4" asChild>
-              <a href="https://github.com/your-repo" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/makotunes/coderanker" target="_blank" rel="noopener noreferrer">
                 Build from Source Code
                 <ArrowRight className="ml-2 h-5 w-5" />
               </a>
@@ -371,7 +371,7 @@ export default function Index() {
                 </ul>
                 <div className="flex flex-col sm:flex-row justify-center space-y-2 sm:space-y-0 sm:space-x-4">
                   <Button size="lg" variant="outline" className="text-lg px-8 py-4" asChild>
-                    <a href="https://github.com/your-repo" target="_blank" rel="noopener noreferrer">
+                    <a href="https://github.com/makotunes/coderanker" target="_blank" rel="noopener noreferrer">
                       Contribute on GitHub
                       <ArrowRight className="ml-2 h-5 w-5" />
                     </a>
@@ -455,7 +455,7 @@ export default function Index() {
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" className="text-lg px-8 py-4 border-white text-blue-600 bg-white hover:bg-blue-50 hover:text-blue-800" asChild>
-                  <a href="https://github.com/your-repo" target="_blank" rel="noopener noreferrer">
+                  <a href="https://github.com/makotunes/coderanker" target="_blank" rel="noopener noreferrer">
                     Build from Source Code
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </a>
