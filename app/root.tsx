@@ -22,8 +22,8 @@ import { authenticator } from "~/auth.server";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "AI人事評価システム" },
-    { name: "description", content: "AI時代のエンジニアリング企業" },
+    { title: "Code Ranker" },
+    { name: "description", content: "AI Native HR evaluation platform" },
   ];
 };
 
