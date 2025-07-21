@@ -2,7 +2,6 @@
 
 ![screen shot](/public/screenshot.png)
 
-
 ---
 
 - 🌐 [Official Landing Page](https://coderanker.cloud)
