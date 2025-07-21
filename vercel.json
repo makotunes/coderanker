@@ -1,0 +1,12 @@
+{
+  "crons": [
+    {
+      "path": "/api/batch/weekly-pre-evaluation",
+      "schedule": "0 9 * * 3"
+    },
+    {
+      "path": "/api/batch/weekly-evaluation",
+      "schedule": "0 9 * * 0"
+    }
+  ]
+} 

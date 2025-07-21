@@ -1,0 +1,41 @@
+Name	Skill	Joining date	Reference Salary	FTE	employmentType	isEvaluated	Tier	Title	Department	Role	email	Number
+Alice Smith	Backend	1-1月-2023		1	Employee	1	T2		Development	ENGINEER	alice.smith@example.com	01
+Bob Johnson	Frontend	15-2月-2023		1	Contracted	1	T3		Development	ENGINEER	bob.johnson@example.com	02
+Charlie Lee	Full Stack	10-3月-2023		1	Employee	1	T2		Development	ENGINEER	charlie.lee@example.com	03
+Diana Evans	UI/UX	20-4月-2023		1	Contracted	1	T2		Design	DESIGNER	diana.evans@example.com	04
+Ethan Brown	DevOps	5-5月-2023		1	Employee	1	T3		Development	ENGINEER	ethan.brown@example.com	05
+Fiona Clark	QA	12-6月-2023		1	Contracted	1	T2		QA	ENGINEER	fiona.clark@example.com	06
+George Miller	Backend	25-7月-2023		1	Employee	1	T2		Development	ENGINEER	george.miller@example.com	07
+Hannah Wilson	Frontend	8-8月-2023		1	Contracted	1	T2		Development	ENGINEER	hannah.wilson@example.com	08
+Ian Moore	AI	30-9月-2023		1	Employee	1	T3		AI	ENGINEER	ian.moore@example.com	09
+Julia Taylor	Project Manager	2-10月-2023		1	Contracted	1	T2		Management	OPERATOR	julia.taylor@example.com	10
+Kevin Anderson	Backend	15-11月-2023		1	Employee	1	T2		Development	ENGINEER	kevin.anderson@example.com	11
+Laura Thomas	Frontend	28-12月-2023		1	Contracted	1	T2		Development	ENGINEER	laura.thomas@example.com	12
+Mike Harris	QA	5-1月-2024		1	Employee	1	T1		QA	ENGINEER	mike.harris@example.com	13
+Nina Scott	UI/UX	18-2月-2024		1	Contracted	1	T1		Design	DESIGNER	nina.scott@example.com	14
+Oscar Lewis	DevOps	3-3月-2024		1	Employee	1	T1		Development	ENGINEER	oscar.lewis@example.com	15
+Paula Walker	AI	16-4月-2024		1	Contracted	1	T1		AI	ENGINEER	paula.walker@example.com	16
+Quentin Young	Project Manager	29-5月-2024		1	Employee	1	T1		Management	OPERATOR	quentin.young@example.com	17
+Rachel King	Backend	12-6月-2024		1	Contracted	1	T1		Development	ENGINEER	rachel.king@example.com	18
+Sam Carter	Frontend	25-7月-2024		1	Employee	1	T1		Development	ENGINEER	sam.carter@example.com	19
+Tina Adams	QA	8-8月-2024		1	Contracted	1	T1		QA	ENGINEER	tina.adams@example.com	20
+Uma Baker	UI/UX	21-9月-2024		1	Employee	1	T1		Design	DESIGNER	uma.baker@example.com	21
+Victor Reed	DevOps	4-10月-2024		1	Contracted	1	T1		Development	ENGINEER	victor.reed@example.com	22
+Wendy Price	AI	17-11月-2024		1	Employee	1	T1		AI	ENGINEER	wendy.price@example.com	23
+Xavier Bell	Project Manager	30-12月-2024		1	Contracted	1	T1		Management	OPERATOR	xavier.bell@example.com	24
+Yvonne Green	Backend	13-1月-2025		1	Employee	1	T6		Development	ADMIN	yvonne.green@example.com	25
+SUPERUSER	Administrator	26-2月-2025		1	Employee	1	T7		Development	SUPERUSER	superuser@example.com	26
+Linda White	HR	10-3月-2025		1	Employee	1	T2		Corporate	CORP	linda.white@example.com	27
+Brian Black	Legal	22-4月-2025		1	Contracted	1	T3		Corporate	CORP	brian.black@example.com	28
+Sophie Turner	Finance	5-5月-2025		1	Employee	1	T2		Corporate	CORP	sophie.turner@example.com	29
+Chris Evans	Support	18-6月-2025		1	Contracted	1	T2		Support	REQUESTOR	chris.evans@example.com	30
+Megan Fox	Support	1-7月-2025		1	Employee	1	T2		Support	REQUESTOR	megan.fox@example.com	31
+Oliver Stone	Support	14-8月-2025		1	Contracted	1	T2		Support	REQUESTOR	oliver.stone@example.com	32
+Emma Watson	Support	27-9月-2025		1	Employee	1	T2		Support	REQUESTOR	emma.watson@example.com	33
+Noah Davis	Legal	10-10月-2025		1	Contracted	1	T3		Corporate	CORP	noah.davis@example.com	34
+Ava Moore	HR	23-11月-2025		1	Employee	1	T2		Corporate	CORP	ava.moore@example.com	35
+Liam Clark	Finance	6-12月-2025		1	Contracted	1	T2		Corporate	CORP	liam.clark@example.com	36
+Mia Lewis	Support	19-1月-2026		1	Employee	1	T2		Support	REQUESTOR	mia.lewis@example.com	37
+Elijah King	Support	2-2月-2026		1	Contracted	1	T2		Support	REQUESTOR	elijah.king@example.com	38
+Sophia Lee	Support	15-3月-2026		1	Employee	1	T2		Support	REQUESTOR	sophia.lee@example.com	39
+James Brown	Support	28-4月-2026		1	Contracted	1	T2		Support	REQUESTOR	james.brown@example.com	40
