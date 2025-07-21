@@ -1,6 +1,7 @@
 # Coderanker
 
-![Coderanker Logo](https://coderanker.cloud/screenshot.png)
+![screen shot](/public/screenshot.png)
+
 
 ---
 
